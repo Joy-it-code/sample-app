@@ -161,7 +161,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 ## 3: Define an Application in ArgoCD
 
-- Create app-definition.yaml:
+- Create a file `app-definition.yaml` in `sample-app` folder:
 
     ### Paste:
     ```bash
@@ -199,7 +199,9 @@ kubectl create namespace sample-namespace
     argocd app sync sample-app
     ```
 
-- Or use the ArgoCD web UI to click “Sync” on `sample-app`.
+- Or, go to the ArgoCD web page (`https://localhost:8080`), find `sample-app`, and click “Sync.”.
+![](./img/3a.dev.sync.page.png)
+
 
 
 ### Check Health and Status:
@@ -211,8 +213,10 @@ argocd app get sample-app
 
 
 ### Rollback:
-   - Change `dev/deployment.yaml` (e.g., set `replicas: 3`).
-
+   - Change `dev/deployment.yaml`:
+   ```
+   replicas: 3
+   ```
 
 ###  Push changes:
 
