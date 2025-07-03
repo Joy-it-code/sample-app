@@ -287,7 +287,7 @@ kubectl get pods -n sample-namespace
 ### 5: Add Prod Environment (Optional):
 
   - Create a file `prod/deployment.yaml`
-  
+
   - Copy `dev/deployment.yaml` to `prod/deployment.yaml`, change replicas to `2`.
 
 
@@ -300,7 +300,7 @@ kubectl get pods -n sample-namespace
     ```
 
   - Version Control:  
-    - Tag a version:
+    - Create a version:
       ```bash
       git tag v1.0.0
       git push origin v1.0.0
@@ -311,12 +311,17 @@ kubectl get pods -n sample-namespace
   - Check Pods:
     ```bash
     kubectl get pods -n sample-namespace
+    kubectl get deployment -n sample-namespace
     ```
+    ![](./img/4d.get.deplyment.replica.2.png)
+    ![](./img/5a.sync.rep.2.png)
 
 
 ###  Access the App:
-   - Create a service for the app:    
-    
+   - Create a service for the app:
+   `dev/service.yaml and prod/service.yaml`    
+
+### Paste: 
 ```bash
     apiVersion: v1
 kind: Service
@@ -341,7 +346,7 @@ git push origin main
 argocd app sync sample-app
 ```
 
-### - Forward the port:
+### Forward the port:
 ```bash
 kubectl port-forward svc/sample-app -n sample-namespace 8081:80
 ```
