@@ -305,16 +305,20 @@ kubectl get pods -n sample-namespace
       git tag v1.0.0
       git push origin v1.0.0
       ```
+   
 
-
-## 6: Test the App
-  - Check Pods:
+      - Check Pods:
     ```bash
     kubectl get pods -n sample-namespace
     kubectl get deployment -n sample-namespace
     ```
+
     ![](./img/4d.get.deplyment.replica.2.png)
     ![](./img/5a.sync.rep.2.png)
+
+
+
+## 6: Test the App
 
 
 ###  Access the App:
@@ -352,6 +356,22 @@ kubectl port-forward svc/sample-app -n sample-namespace 8081:80
 ```
 
    - Open `http://localhost:8081` on Browser. 
+   ![](./img/5b.sync.rep1.png)
+   ![](./img/5c.sync.service.png)
+   ![](./img/6a.nginx.page.png)
+
+
+
+### Check Service and pods:
+```bash
+kubectl get services -n sample-namespace
+kubectl get deployment -n sample-namespace
+kubectl get pods -n sample-namespace
+```
+![](./img/6b.check.svc.pods.png)
+
+
+
 
 
 
