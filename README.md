@@ -94,6 +94,9 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 
 
+
+
+
 ## 2: Create a Git Repository
 
 - Create a GitHub Repository:
@@ -194,10 +197,19 @@ kubectl create namespace sample-namespace
 
 ## 4: Manage the Application    
 
+ - Login with ArgoCD CLI
+
+```bash
+argocd login localhost:8080 --username admin --password YOUR_PASSWORD --insecure
+```
+![](./img/2f.local.login.png)
+
+
  - Sync the Application:
     ```bash
     argocd app sync sample-app
     ```
+![](./img/2g.sync.png)    
 
 - Or, go to the ArgoCD web page (`https://localhost:8080`), find `sample-app`, and click “Sync.”.
 ![](./img/3a.dev.sync.page.png)
@@ -208,6 +220,8 @@ kubectl create namespace sample-namespace
 ```bash
 argocd app get sample-app
 ```
+![](./img/2h.check.health.stat.termnl.png)
+
 
 - Or check the web UI for a picture of your app’s status.    
 
@@ -231,10 +245,20 @@ git push origin main
 argocd app sync sample-app
 ```
 
+
 ###  Monitor Application Status
 ```bash
 argocd app get sample-app
 ```
+![](./img/3b.replica.3.png)
+![](./img/3c.replica.3.health.status.png)
+
+
+### Verify the Change:
+```bash
+kubectl get deployment -n sample-namespace
+```
+![](./img/3d.verify.deplymt.png)
 
 
 ### Roll back:
@@ -242,11 +266,30 @@ argocd app get sample-app
 argocd app rollback sample-app
 ```
 
+### Verify the Change:
+```bash
+kubectl get deployment -n sample-namespace
+```
+![](./img/3e.get.deplymt.rollbk.1.png)
+![](./img/4a.sync.rollbk.1.png)
+![](./img/4b.sync.rollbk.1.contd.png)
+
+
+
+### Check the pods:
+```bash
+kubectl get pods -n sample-namespace
+```
+![](./img/4c.get.pod.rollbk1.png)
+
 
 
 ### 5: Add Prod Environment (Optional):
 
+  - Create a file `prod/deployment.yaml`
+  
   - Copy `dev/deployment.yaml` to `prod/deployment.yaml`, change replicas to `2`.
+
 
   - Push:
 
