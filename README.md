@@ -1,32 +1,34 @@
 # GitOps Application Deployment with ArgoCD
 
-## This project demonstrates a complete GitOps workflow using **ArgoCD** to deploy and manage a sample Kubernetes application from a Git repository.
+> This project demonstrates a complete GitOps workflow using **ArgoCD** to deploy and manage a sample Kubernetes application from a Git repository.
 
+---
 
 ## Overview
 
-In this project, I
+In this project, I will:
 
 - Define Kubernetes applications in YAML.
 - Deploy them using **ArgoCD**.
 - Manage application lifecycle: sync, rollback, monitor health.
 - Follow best practices for Git repository structure.
 
+---
 
 ## Project Structure
 
 ```bash
 sample-app/
-├── dev/
-│ └── deployment.yaml # Deployment for the dev environment
-├── prod/
-│ └── deployment.yaml # Deployment for the prod environment
-├── k8s/
-│ └── deployment.yaml # Main manifest ArgoCD reads from
-├── app-definition.yaml # ArgoCD application configuration
-└── src/
+├── app-definition.yaml              
+├── dev/                             
+│   ├── deployment.yaml              
+│   └── service.yaml                 
+├── prod/                            
+│   ├── deployment.yaml               
+│   └── service.yaml 
 ```
 
+---
 
 ##  Prerequisites
 Ensure you have:
@@ -48,6 +50,7 @@ argocd version --client
 ![](./img/1a.installation.version.png)
 
 
+---
 
 ## 1: Set Up Minikube and ArgoCD
 - Start Minikube:
@@ -94,8 +97,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 
 
-
-
+---
 
 ## 2: Create a Git Repository
 
@@ -161,6 +163,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
     git commit -m "Add initial app structure"
     git push origin main
     ```
+---
 
 ## 3: Define an Application in ArgoCD
 
@@ -194,6 +197,7 @@ kubectl create namespace sample-namespace
     kubectl apply -f app-definition.yaml -n argocd
     ```    
 
+---
 
 ## 4: Manage the Application    
 
@@ -283,6 +287,7 @@ kubectl get pods -n sample-namespace
 ![](./img/4c.get.pod.rollbk1.png)
 
 
+---
 
 ### 5: Add Prod Environment (Optional):
 
@@ -317,6 +322,7 @@ kubectl get pods -n sample-namespace
     ![](./img/5a.sync.rep.2.png)
 
 
+---
 
 ## 6: Test the App
 
@@ -372,8 +378,7 @@ kubectl get pods -n sample-namespace
 
 
 
-
-
+---
 
 ## 7: Clean Up
 
@@ -387,3 +392,28 @@ kubectl get pods -n sample-namespace
     ```bash
     minikube stop
     ```
+
+---
+
+## Conclusion
+
+This project showcases a practical, end-to-end GitOps workflow using ArgoCD to manage Kubernetes application deployments. I successfully set up and deployed the sample-app on a Kubernetes cluster running with Minikube. 
+By defining infrastructure as code, version-controlling it in a Git repository for different environments like dev and prod, and using ArgoCD to handle synchronization and rollbacks, the deployment process becomes consistent, auditable, and easy to manage.
+
+---
+
+ ### Resources
+
+  - ArgoCD Docs
+
+ - Kubernetes Docs
+
+- GitOps Best Practices
+
+
+
+### Author
+
+**Joy Nwatuzor**
+
+Made with ❤️ as part of a GitOps project using ArgoCD and Kubernetes.
