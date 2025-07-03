@@ -125,7 +125,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
    mkdir dev prod
    ```
 
-- Create `dev/deployment.yaml`:
+- Create a file `dev/deployment.yaml`:
 
 ### Paste:
    ```bash
