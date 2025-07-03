@@ -152,7 +152,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
    ```
 
 
-### - Push to GitHub:
+- ### Push to GitHub:
     ```bash
     git add .
     git commit -m "Add initial app structure"
@@ -181,12 +181,12 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
         namespace: sample-namespace
     ```
 
-### Create Namespace:
-    ```bash
-    kubectl create namespace sample-namespace
-    ```
+- Create Namespace:
+```bash
+kubectl create namespace sample-namespace
+```
 
-### Deploy the Application:
+- Deploy the Application:
     ```bash
     kubectl apply -f app-definition.yaml -n argocd
     ```    
@@ -194,7 +194,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 ## 4: Manage the Application    
 
-### - Sync the Application:
+ - Sync the Application:
     ```bash
     argocd app sync sample-app
     ```
@@ -202,10 +202,10 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 - Or use the ArgoCD web UI to click “Sync” on `sample-app`.
 
 
-### - Check Health and Status:
-    ```bash
-    argocd app get sample-app
-    ```
+### Check Health and Status:
+```bash
+argocd app get sample-app
+```
 
 - Or check the web UI for a picture of your app’s status.    
 
@@ -213,29 +213,30 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ### Rollback:
    - Change `dev/deployment.yaml` (e.g., set `replicas: 3`).
 
-###   - Push changes:
 
-    ```bash
-    git add .
-    git commit -m "Change replicas to 3"
-    git push origin main
-    ```
+###  Push changes:
 
-###  - Sync the Application (using ArgoCD CLI):
-    ```bash
-    argocd app sync sample-app
-    ```
+```bash
+git add .
+git commit -m "Change replicas to 3"
+git push origin main
+```
 
-### - Monitor Application Status
-    ```bash
-    argocd app get sample-app
-    ```
+### Sync the Application (using ArgoCD CLI):
+```bash
+argocd app sync sample-app
+```
+
+###  Monitor Application Status
+```bash
+argocd app get sample-app
+```
 
 
-### - Roll back:
-        ```bash
-        argocd app rollback sample-app
-        ```
+### Roll back:
+```bash
+argocd app rollback sample-app
+```
 
 
 
@@ -266,26 +267,26 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
     ```
 
 
-### - Access the App:
+###  Access the App:
    - Create a service for the app:    
     
-    ```bash
-        apiVersion: v1
-    kind: Service
-    metadata:
-    name: sample-app
-    namespace: sample-namespace
-    spec:
-    selector:
-        app: sample-app
-    ports:
-    - protocol: TCP
-        port: 80
-        targetPort: 80
-    type: ClusterIP
-    ```
+```bash
+    apiVersion: v1
+kind: Service
+metadata:
+name: sample-app
+namespace: sample-namespace
+spec:
+selector:
+    app: sample-app
+ports:
+- protocol: TCP
+    port: 80
+    targetPort: 80
+type: ClusterIP
+```
 
-### - Save as `dev/service.yaml`, push to GitHub, and sync:
+### Save as `dev/service.yaml`, push to GitHub, and sync:
 ```bash
 git add .
 git commit -m "Add service"
@@ -294,9 +295,9 @@ argocd app sync sample-app
 ```
 
 ### - Forward the port:
-    ```bash
-    kubectl port-forward svc/sample-app -n sample-namespace 8081:80
-    ```
+```bash
+kubectl port-forward svc/sample-app -n sample-namespace 8081:80
+```
 
    - Open `http://localhost:8081` on Browser. 
 
