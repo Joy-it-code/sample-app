@@ -388,9 +388,10 @@ kubectl get pods -n sample-namespace
     ```
 
 
-- Stop Minikube:
+- Stop and Delete Minikube:
     ```bash
     minikube stop
+    minikube delete
     ```
 
 ---
