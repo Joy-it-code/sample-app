@@ -89,9 +89,9 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 - Open `https://localhost:8080` on browser.
 
 - Get the password:
-      ```bash
-      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-      ```
+    ```bash
+    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+    ```
  - Log in with username `admin` and the password.
 ![](./img/2e.argocd.page.png)
 
