@@ -116,7 +116,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
   ```
 
 
-### - Connect Project folder to GitHub:
+###  Connect Project folder to GitHub:
   ```bash
   git init
   git add .
@@ -125,12 +125,12 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
   git remote add origin https://github.com/username/gitops-sample-app.git
   ```
 
-### - Create folders for different environments (`dev and prod`):
+- ### Create folders for different environments (`dev and prod`):
    ```bash
    mkdir dev prod
    ```
 
-- Create a file `dev/deployment.yaml`:
+ - Create a file `dev/deployment.yaml`:
 
 ### Paste:
    ```bash
